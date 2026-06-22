@@ -19,6 +19,7 @@ AkitaKumaYokeLINE/
 ├── kuma-bakuon/     ③ クマ撃退ブザー（Web Audio合成・熊鈴モード）
 ├── kuma-alert/      ④ クマ通知エリア設定（市町村を登録→通知）
 ├── kotsu-info/      ⑤ 交通・くらし情報（通行止め/除雪/バス/クマ規制）
+├── kuma-guide/      ⑥ つかいかた（クマに遭わない暮らし方＋きょうの危険度）
 ├── assets/
 │   └── richmenu.png リッチメニュー画像（2500×1686・そのままLINEへ）
 ├── slides/          議員向けスライド（PNG＋slides.pdf）
@@ -56,6 +57,7 @@ npm run dev   # http://localhost:5173
 | クマ撃退ブザー | https://kuma-bakuon.vercel.app |
 | 通知エリア設定 | https://kuma-alert-ten.vercel.app |
 | 交通・くらし情報 | https://kotsu-info.vercel.app |
+| つかいかた（遭わない暮らし方＋危険度） | https://kuma-guide.vercel.app |
 
 ※現在は `VITE_API_BASE` 未設定のため**デモデータで動作**。LIFF ID も未設定（LINE内で開くと本人確認が付く）。
 再デプロイは各フォルダで `vercel --prod`。GitHub連携の自動デプロイは各Vercelプロジェクトの Root Directory を各フォルダに設定して接続する（ダッシュボード）。

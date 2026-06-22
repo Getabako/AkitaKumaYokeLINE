@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 17px;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    color: #3a2a1a;
+  }
+  p, li, button, label {
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+}
+
+@layer components {
+  /* 大きなメニューボタン（特大） */
+  .menu-btn {
+    @apply w-full flex items-center gap-4 rounded-3xl bg-white border-4 border-kuma-brown py-7 px-6 text-left font-bold text-2xl text-kuma-brown-dark shadow-md active:bg-kuma-cream transition;
+    min-height: 96px;
+  }
+  /* 「もどる」など主要ボタン */
+  .big-btn {
+    @apply w-full rounded-3xl bg-kuma-brown py-5 px-6 text-white font-bold text-xl shadow-md active:bg-kuma-brown-dark transition;
+    min-height: 64px;
+  }
+  .big-btn-outline {
+    @apply w-full rounded-3xl bg-white border-4 border-kuma-brown py-5 px-6 text-kuma-brown-dark font-bold text-xl shadow-sm active:bg-kuma-cream transition;
+    min-height: 64px;
+  }
+  /* 1項目ごとの大きなカード */
+  .guide-card {
+    @apply rounded-3xl bg-white shadow-md p-6 border-2 border-kuma-cream;
+  }
+}
