@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 高齢者向け：基準を大きく、行間・字間をゆったり */
+  html {
+    font-size: 17px;
+  }
+  html, body, #root { min-height: 100%; }
+  body {
+    font-size: 1.0625rem; /* 約18px */
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    color: #1f2937;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer components {
+  /* 特大ボタン（min-height 64px） */
+  .btn-primary {
+    @apply w-full rounded-2xl bg-line-green text-white font-bold shadow-md active:bg-line-green-dark transition;
+    min-height: 64px;
+    font-size: 1.25rem;
+    padding: 1rem 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .btn-outline {
+    @apply w-full rounded-2xl border-2 border-slate-300 bg-white font-bold text-slate-700 transition active:bg-slate-100;
+    min-height: 64px;
+    font-size: 1.125rem;
+    padding: 1rem 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-md;
+    padding: 1.25rem;
+  }
+  /* 特大チェック項目 */
+  .area-item {
+    @apply flex items-center justify-between w-full rounded-2xl border-2 bg-white transition;
+    min-height: 64px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1875rem;
+    letter-spacing: 0.04em;
+  }
+  .area-item-on {
+    @apply border-line-green bg-green-50;
+  }
+  .area-item-off {
+    @apply border-slate-300;
+  }
+}

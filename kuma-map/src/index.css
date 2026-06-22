@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 高齢者向け：全体的に大きく・広く・読みやすく */
+  html {
+    font-size: 17px;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    font-size: 1.06rem; /* 約18px相当 */
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    color: #1f2937;
+  }
+  h1 {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* 大きく押しやすいプライマリボタン */
+  .btn-primary {
+    @apply w-full rounded-2xl bg-line-green px-6 text-white font-bold shadow-md
+           active:bg-line-green-dark transition;
+    min-height: 64px;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+  .btn-outline {
+    @apply w-full rounded-2xl border-2 border-slate-300 bg-white px-6 font-bold
+           text-slate-700 shadow-sm transition active:bg-slate-100;
+    min-height: 64px;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+  /* フィルタ用のトグルチップ（大きめ・コントラスト高め） */
+  .chip {
+    @apply inline-flex items-center justify-center rounded-full border-2 px-5
+           font-bold transition;
+    min-height: 56px;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+  .chip-on {
+    @apply border-line-green bg-line-green text-white shadow;
+  }
+  .chip-off {
+    @apply border-slate-300 bg-white text-slate-600;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-md p-6;
+  }
+}

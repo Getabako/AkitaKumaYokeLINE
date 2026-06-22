@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 17px;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    font-size: 1.0625rem; /* 約18px */
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer components {
+  /* 画面いっぱいに近い極大の赤ボタン */
+  .btn-alarm {
+    @apply w-full rounded-3xl bg-alarm text-white font-extrabold shadow-lg
+           active:bg-alarm-dark transition select-none;
+    min-height: 150px;
+    font-size: 2rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    touch-action: manipulation;
+  }
+  .btn-alarm-on {
+    @apply bg-alarm-dark;
+    animation: alarm-pulse 0.6s ease-in-out infinite;
+  }
+  /* 鈴モードの大きめトグルボタン */
+  .btn-bell {
+    @apply w-full rounded-2xl border-4 font-bold py-6 px-6 transition select-none;
+    font-size: 1.375rem;
+    letter-spacing: 0.04em;
+    touch-action: manipulation;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-md p-6;
+  }
+}
+
+@keyframes alarm-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 18px rgba(220, 38, 38, 0);
+  }
+}

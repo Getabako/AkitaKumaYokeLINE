@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 17px;
+  }
+  html, body, #root { height: 100%; }
+  body {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer components {
+  /* 大きく押しやすいフィルタ用トグル */
+  .toggle-chip {
+    @apply rounded-2xl border-2 px-5 py-4 font-bold text-lg leading-snug transition active:scale-95;
+  }
+  /* 情報カード（特大文字） */
+  .info-card {
+    @apply w-full text-left rounded-3xl bg-white shadow-md p-6 border-l-8 transition active:scale-[0.99];
+  }
+}
+
+/* Leaflet のポップアップを大きめに */
+.leaflet-popup-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}

@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 17px;
+  }
+  html, body, #root { height: 100%; }
+  body {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    color: #1f2937;
+  }
+}
+
+@layer components {
+  /* 画面の主役: いま ここで クマを見た */
+  .btn-hero {
+    @apply w-full rounded-3xl bg-kuma-red px-6 text-white font-extrabold shadow-lg active:bg-kuma-red-dark transition;
+    min-height: 110px;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+  /* 標準の大きなボタン */
+  .btn-primary {
+    @apply w-full rounded-2xl bg-line-green px-6 text-white font-bold shadow-md active:bg-line-green-dark transition;
+    min-height: 64px;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .btn-outline {
+    @apply w-full rounded-2xl border-2 border-slate-300 bg-white px-6 font-bold text-slate-700 transition active:bg-slate-100;
+    min-height: 64px;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+  }
+  /* 選択肢ボタン（獣種・種別） */
+  .btn-choice {
+    @apply w-full rounded-2xl border-2 border-slate-300 bg-white px-4 font-bold text-slate-700 transition;
+    min-height: 72px;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+  .btn-choice-active {
+    @apply border-line-green bg-line-green text-white shadow-md;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-md p-5;
+  }
+  .note-input {
+    @apply w-full rounded-2xl border-2 border-slate-300 bg-white p-4 text-slate-800;
+    min-height: 88px;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+}
