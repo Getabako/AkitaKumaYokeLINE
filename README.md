@@ -47,6 +47,21 @@ npm run dev   # http://localhost:5173
 
 ---
 
+## 本番URL（デプロイ済み・2026-06-23）
+
+| アプリ | 本番URL |
+|---|---|
+| クマ出没マップ | https://kuma-map-gules.vercel.app |
+| 目撃をしらせる | https://kuma-report.vercel.app |
+| クマ撃退ブザー | https://kuma-bakuon.vercel.app |
+| 通知エリア設定 | https://kuma-alert-ten.vercel.app |
+| 交通・くらし情報 | https://kotsu-info.vercel.app |
+
+※現在は `VITE_API_BASE` 未設定のため**デモデータで動作**。LIFF ID も未設定（LINE内で開くと本人確認が付く）。
+再デプロイは各フォルダで `vercel --prod`。GitHub連携の自動デプロイは各Vercelプロジェクトの Root Directory を各フォルダに設定して接続する（ダッシュボード）。
+
+---
+
 ## Vercelデプロイ（モノレポ）
 
 このリポジトリは「1リポジトリ＝5つのVercelプロジェクト」で運用する。
