@@ -15,7 +15,6 @@ let sirenOsc: OscillatorNode | null = null
 let sirenSubOsc: OscillatorNode | null = null
 let sirenGain: GainNode | null = null
 let sirenLfo: OscillatorNode | null = null
-let sirenLfoGain: GainNode | null = null
 
 // 鈴モードの繰り返しタイマー
 let bellTimer: ReturnType<typeof setInterval> | null = null
@@ -86,7 +85,6 @@ export function playSiren(): void {
   sirenSubOsc = sub
   sirenGain = gain
   sirenLfo = lfo
-  sirenLfoGain = lfoGain
 }
 
 /** サイレンを止める（フェードアウトしてノードを破棄）。 */
@@ -119,7 +117,6 @@ export function stopSiren(): void {
   sirenSubOsc = null
   sirenLfo = null
   sirenGain = null
-  sirenLfoGain = null
 }
 
 /**
