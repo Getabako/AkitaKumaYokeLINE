@@ -12,6 +12,8 @@ export type Slide = {
   badgeBg: string
   /** 見出しの文字色 */
   titleColor: string
+  /** 背景イラスト（public/slides/ 配下のパス）。文字はスクリムの上に載る */
+  bgImage?: string
 }
 
 type Props = {
@@ -84,17 +86,25 @@ export function SlideCarousel({ slides, onFinish }: Props): ReactNode {
           {slides.map((s, i) => (
             <div className="carousel-slide" key={i} aria-hidden={i !== index}>
               <div className="slide-card" style={{ background: s.cardBg }}>
-                <span
-                  className="slide-badge"
-                  style={{ background: s.badgeBg }}
-                >
-                  {s.badge}
-                </span>
-                <h2 className="slide-title mt-6" style={{ color: s.titleColor }}>
-                  {s.title}
-                </h2>
-                <div className="divider" />
-                <p className="slide-body text-ink">{s.body}</p>
+                {s.bgImage && (
+                  <>
+                    <div
+                      className="slide-photo"
+                      style={{ backgroundImage: `url(${s.bgImage})` }}
+                    />
+                    <div className="slide-scrim" />
+                  </>
+                )}
+                <div className="slide-content">
+                  <span className="slide-badge" style={{ background: s.badgeBg }}>
+                    {s.badge}
+                  </span>
+                  <h2 className="slide-title mt-6" style={{ color: s.titleColor }}>
+                    {s.title}
+                  </h2>
+                  <div className="divider" />
+                  <p className="slide-body text-ink">{s.body}</p>
+                </div>
               </div>
             </div>
           ))}

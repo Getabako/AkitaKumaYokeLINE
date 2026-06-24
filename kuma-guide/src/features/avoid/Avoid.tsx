@@ -10,6 +10,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #FFFDF7 0%, #FBF6EC 55%, #EFE6D3 100%)',
     badgeBg: 'linear-gradient(135deg, #06C755, #04a948)',
     titleColor: '#2A2320',
+    bgImage: '/slides/avoid-1.jpg',
   },
   {
     badge: '2',
@@ -18,6 +19,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #FFF7E6 0%, #FBEFD6 55%, #F2E2BE 100%)',
     badgeBg: 'linear-gradient(135deg, #F2A900, #D98A00)',
     titleColor: '#5E4023',
+    bgImage: '/slides/avoid-2.jpg',
   },
   {
     badge: '3',
@@ -26,6 +28,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #F3FBEF 0%, #E6F4DE 55%, #D6EBC9 100%)',
     badgeBg: 'linear-gradient(135deg, #3f7d4e, #2f6a3e)',
     titleColor: '#2f6a3e',
+    bgImage: '/slides/avoid-3.jpg',
   },
   {
     badge: '4',
@@ -34,6 +37,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #FFFDF7 0%, #F0F2EC 55%, #E0E4D6 100%)',
     badgeBg: 'linear-gradient(135deg, #06C755, #04a948)',
     titleColor: '#2A2320',
+    bgImage: '/slides/avoid-4.jpg',
   },
   {
     badge: '5',
@@ -42,6 +46,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #FBF4EA 0%, #F2E7D3 55%, #E6D5B8 100%)',
     badgeBg: 'linear-gradient(135deg, #8B5E3C, #5E4023)',
     titleColor: '#5E4023',
+    bgImage: '/slides/avoid-5.jpg',
   },
   {
     badge: '6',
@@ -50,6 +55,7 @@ const SLIDES: Slide[] = [
     cardBg: 'linear-gradient(160deg, #FFFDF7 0%, #EAF6E2 55%, #D6EBC9 100%)',
     badgeBg: 'linear-gradient(135deg, #06C755, #F2A900)',
     titleColor: '#2f6a3e',
+    bgImage: '/slides/avoid-6.jpg',
   },
 ]
 

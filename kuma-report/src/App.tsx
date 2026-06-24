@@ -79,12 +79,11 @@ export default function App() {
     }
   }
 
-  // done 画面は 3 秒後に自動で閉じる
-  useEffect(() => {
-    if (step !== 'done') return
-    const t = setTimeout(() => closeLiff(), 3000)
-    return () => clearTimeout(t)
-  }, [step])
+  // 「とじる」：LINE内ではウィンドウを閉じ、ブラウザ（デモ）では最初の画面に戻す
+  function finishReport() {
+    closeLiff()
+    reset()
+  }
 
   return (
     <div className="screen">
@@ -112,7 +111,7 @@ export default function App() {
             onBack={reset}
           />
         )}
-        {step === 'done' && <Done onClose={closeLiff} />}
+        {step === 'done' && <Done onClose={finishReport} />}
         {step === 'error' && (
           <ErrorScreen
             message={error}

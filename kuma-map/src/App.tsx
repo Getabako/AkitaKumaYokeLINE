@@ -116,10 +116,6 @@ export default function App() {
         </section>
 
         <Legend />
-
-        <p className="px-1 pb-2 text-base text-bear-soft">
-          ※ 情報はうそ情報チェック後に掲載しています。危険を感じたらすぐに安全な場所へ。
-        </p>
       </main>
     </div>
   )
