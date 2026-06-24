@@ -1,31 +1,11 @@
 import { BackButton } from '../../components/BackButton'
 
-type Action = {
-  emoji: string
-  text: string
-}
-
-const ACTIONS: Action[] = [
-  {
-    emoji: '🤫',
-    text: 'さわがない・走らない。走ると 追いかけてきます（クマは とても 速いです）。',
-  },
-  {
-    emoji: '👀',
-    text: '背中を 向けない。クマを 見ながら、ゆっくり 後ろへ さがって 離れます。',
-  },
-  {
-    emoji: '🐻',
-    text: '子グマが いたら、近くに 母グマが います。すぐに その場を 離れます。',
-  },
-  {
-    emoji: '🌶️',
-    text: '熊スプレー（とうがらし）が あれば、最後の手段。鈴より 強く 追いはらえます。',
-  },
-  {
-    emoji: '📣',
-    text: '少し 離れているうちに、大きな音や 声で「人が いる」と 知らせます。',
-  },
+const ACTIONS: string[] = [
+  'さわがない・走らない。走ると追いかけてきます。',
+  '背中を向けず、クマを見ながらゆっくり後ろへさがる。',
+  '子グマがいたら、近くに母グマがいる。すぐ離れる。',
+  '熊スプレーがあれば、最後の手段に使う。',
+  '少し離れたら、大きな音や声で人がいると知らせる。',
 ]
 
 export function Meet() {
@@ -41,10 +21,10 @@ export function Meet() {
       </p>
 
       <div className="space-y-6">
-        {ACTIONS.map((a, i) => (
+        {ACTIONS.map((text, i) => (
           <div key={i} className="guide-card flex items-start gap-4">
-            <span className="text-5xl shrink-0">{a.emoji}</span>
-            <p className="text-xl font-bold text-kuma-brown-dark">{a.text}</p>
+            <span className="num-badge">{i + 1}</span>
+            <p className="text-xl font-bold text-kuma-brown-dark">{text}</p>
           </div>
         ))}
       </div>

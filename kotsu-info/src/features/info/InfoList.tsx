@@ -27,18 +27,16 @@ function Card({ item }: { item: InfoItem }) {
       }}
     >
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-4xl leading-none" aria-hidden>
-          {meta.emoji}
-        </span>
         <span
-          className="rounded-full px-4 py-1 text-base font-bold text-white"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-1 text-base font-bold text-white"
           style={{ background: meta.color }}
         >
+          <span className="w-3 h-3 rounded-full bg-white/90" aria-hidden />
           {meta.label}
         </span>
       </div>
       <p className="text-xl font-bold text-slate-900 mb-1">{item.title}</p>
-      <p className="text-lg text-slate-700 mb-2">📍 {item.place}</p>
+      <p className="text-lg text-slate-700 mb-2">{item.place}</p>
       <p className="text-lg text-slate-800 mb-3">{item.detail}</p>
       <p className="text-base text-slate-500">{formatUpdated(item.updatedAt)}</p>
     </button>

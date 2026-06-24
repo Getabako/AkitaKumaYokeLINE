@@ -15,6 +15,8 @@
     line-height: 1.9;
     letter-spacing: 0.04em;
     color: #3a2a1a;
+    word-break: auto-phrase;
+    line-break: strict;
   }
   p, li, button, label {
     line-height: 1.9;
@@ -40,5 +42,12 @@
   /* 1項目ごとの大きなカード */
   .guide-card {
     @apply rounded-3xl bg-white shadow-md p-6 border-2 border-kuma-cream;
+  }
+  /* 番号バッジ（絵文字の代わり） */
+  .num-badge {
+    @apply shrink-0 flex items-center justify-center rounded-full bg-kuma-brown text-white font-bold;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
   }
 }

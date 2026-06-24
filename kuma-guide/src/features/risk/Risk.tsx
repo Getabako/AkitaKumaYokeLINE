@@ -25,8 +25,7 @@ export function Risk() {
       </p>
 
       <div className={`rounded-3xl border-4 ${s.border} ${s.bg} p-8 text-center shadow-md`}>
-        <div className="text-7xl mb-3">{result.emoji}</div>
-        <p className="text-xl text-kuma-brown-dark mb-1">きょうは</p>
+        <p className="text-xl text-kuma-brown-dark mb-3">きょうは</p>
         <p className={`text-5xl font-bold ${s.text}`}>{result.label}</p>
       </div>
 

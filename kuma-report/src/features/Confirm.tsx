@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import MapPreview from './MapPreview'
 import type { Animal, Kind } from '../lib/sightings'
-import { ANIMALS, KINDS, ANIMAL_LABEL, ANIMAL_EMOJI, KIND_LABEL } from '../lib/labels'
+import { ANIMALS, KINDS, ANIMAL_LABEL, ANIMAL_COLOR, KIND_LABEL } from '../lib/labels'
 
 type Props = {
   lat: number
@@ -43,10 +43,14 @@ export default function Confirm({
           {ANIMALS.map((a) => (
             <button
               key={a}
-              className={clsx('btn-choice', a === animal && 'btn-choice-active')}
+              className={clsx('btn-choice flex flex-col items-center justify-center gap-2', a === animal && 'btn-choice-active')}
               onClick={() => onAnimal(a)}
             >
-              <span className="block text-2xl">{ANIMAL_EMOJI[a]}</span>
+              <span
+                className="inline-block rounded-full"
+                style={{ width: '20px', height: '20px', backgroundColor: ANIMAL_COLOR[a] }}
+                aria-hidden
+              />
               {ANIMAL_LABEL[a]}
             </button>
           ))}
@@ -89,10 +93,8 @@ export default function Confirm({
         やめて最初にもどる
       </button>
 
-      <p className="text-sm text-slate-400 text-center leading-relaxed">
-        LINEで本人確認しているので、
-        <br />
-        いたずら通報は入りにくいしくみです。
+      <p className="text-sm text-slate-400 text-center">
+        LINEで本人確認ずみ。いたずら通報は入りにくいしくみです。
       </p>
     </div>
   )

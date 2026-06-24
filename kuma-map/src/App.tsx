@@ -1,10 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { initLiff } from './lib/liff'
 import { fetchSightings } from './lib/sightings'
-import { useMap, selectVisibleSightings } from './stores/map'
+import { useMap } from './stores/map'
 import { MapView } from './components/MapView'
 import { Filters } from './components/Filters'
 import { Legend } from './components/Legend'
+
+// 秋田県の公式マップ「クマダス」を、秋田中心・直近3日で開くためのURL。
+// 本番では議員ルートで県と正式にデータ連携する想定。デモではここへリンクして本物の最新情報を見せる。
+function kumadasUrl(lat = 39.72, lng = 140.1): string {
+  const end = new Date()
+  const start = new Date(end.getTime() - 2 * 24 * 60 * 60 * 1000)
+  const ymd = (d: Date) => d.toISOString().slice(0, 10)
+  const params = new URLSearchParams({
+    lat: String(lat),
+    lng: String(lng),
+    startdate: ymd(start),
+    enddate: ymd(end),
+    zoom_level: '10',
+  })
+  return `https://kumadas.net/?${params.toString()}`
+}
 
 export default function App() {
   const status = useMap((s) => s.status)
@@ -14,8 +30,16 @@ export default function App() {
   const setSightings = useMap((s) => s.setSightings)
   const fail = useMap((s) => s.fail)
 
-  // 表示中（フィルタ適用後）の件数と一覧
-  const visible = useMap(selectVisibleSightings)
+  // 表示中（フィルタ適用後）の件数と一覧。
+  // ストアのセレクタで filter すると毎レンダーで新配列が返り
+  // 無限再レンダリング（React #185）になるため、生データを取り出して useMemo で絞り込む。
+  const sightings = useMap((s) => s.sightings)
+  const animals = useMap((s) => s.animals)
+  const kinds = useMap((s) => s.kinds)
+  const visible = useMemo(
+    () => sightings.filter((item) => animals[item.animal] && kinds[item.kind]),
+    [sightings, animals, kinds],
+  )
 
   // LIFF 初期化（プロフィール取得はベストエフォート。失敗してもアプリは動く）
   useEffect(() => {
@@ -69,6 +93,18 @@ export default function App() {
               )}
             </div>
           </div>
+
+          <a
+            href={kumadasUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary mt-4 flex items-center justify-center text-center"
+          >
+            県の最新情報を見る（クマダス）
+          </a>
+          <p className="mt-2 text-base text-slate-500">
+            正式に県と連携すると、最新の出没情報がこの画面にそのまま表示されます。
+          </p>
         </section>
 
         <section className="card">

@@ -161,8 +161,7 @@ export default function App() {
 
         {/* 人への注意 */}
         <section className="text-center text-base text-slate-600 leading-relaxed">
-          この音は人にもとても大きく聞こえます。
-          近くに人がいないか、たしかめてから鳴らしてください。
+          大きな音です。近くに人がいないか確かめてから鳴らしてください。
         </section>
 
         <footer className="text-center text-sm text-slate-400 pt-2 pb-6">

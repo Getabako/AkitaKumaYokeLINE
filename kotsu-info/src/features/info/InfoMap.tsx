@@ -18,14 +18,14 @@ const DefaultIcon = L.icon({
 })
 L.Marker.prototype.options.icon = DefaultIcon
 
-// カテゴリ色の丸ピン（divIcon で色分け）
-function coloredIcon(color: string, emoji: string): L.DivIcon {
+// カテゴリ色の丸ピン（divIcon で色分け・絵文字なし）
+function coloredIcon(color: string): L.DivIcon {
   return L.divIcon({
     className: '',
-    html: `<div style="background:${color};width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);font-size:16px;">${emoji}</span></div>`,
-    iconSize: [34, 34],
-    iconAnchor: [17, 34],
-    popupAnchor: [0, -32],
+    html: `<div style="background:${color};width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);"></div>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -28],
   })
 }
 
@@ -73,11 +73,11 @@ export function InfoMap() {
     visible.forEach((it) => {
       const meta = CATEGORY_META[it.category]
       const marker = L.marker([it.lat, it.lng], {
-        icon: coloredIcon(meta.color, meta.emoji),
+        icon: coloredIcon(meta.color),
       })
         .addTo(map)
         .bindPopup(
-          `<b>${meta.emoji} ${meta.label}</b><br>${it.title}<br><span style="color:#555">${it.place}</span>`,
+          `<b style="color:${meta.color}">${meta.label}</b><br>${it.title}<br><span style="color:#555">${it.place}</span>`,
         )
       marker.on('click', () => select(it.id))
       markersRef.current[it.id] = marker

@@ -13,6 +13,8 @@
     line-height: 1.9;
     letter-spacing: 0.04em;
     color: #1f2937;
+    word-break: auto-phrase;
+    line-break: strict;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
   }
@@ -51,5 +53,32 @@
   }
   .area-item-off {
     @apply border-slate-300;
+  }
+
+  /* 2列グリッドのタップ選択（高齢者向けに大きめ） */
+  .area-cell {
+    @apply flex items-center justify-center rounded-2xl border-2 bg-white font-bold text-center transition;
+    min-height: 60px;
+    padding: 0.6rem 0.5rem;
+    font-size: 1.0625rem;
+    letter-spacing: 0.02em;
+  }
+  .area-cell-on {
+    @apply border-line-green bg-green-50 text-slate-900;
+  }
+  .area-cell-off {
+    @apply border-slate-300 text-slate-700;
+  }
+
+  /* 選択中チップ */
+  .area-chip {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-line-green bg-green-50 font-bold text-slate-800;
+    padding: 0.4rem 0.5rem 0.4rem 0.85rem;
+    font-size: 1rem;
+  }
+  .area-chip-x {
+    @apply flex h-7 w-7 flex-none items-center justify-center rounded-full bg-line-green text-white;
+    font-size: 1.05rem;
+    line-height: 1;
   }
 }

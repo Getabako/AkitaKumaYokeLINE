@@ -6,7 +6,6 @@ export type RiskLevel = 'high' | 'normal' | 'low'
 export type RiskResult = {
   level: RiskLevel
   label: string // 「高い」「ふつう」「低い」
-  emoji: string
   advice: string
   hour: number
   month: number // 1-12
@@ -54,7 +53,6 @@ export function assessRisk(now: Date = new Date()): RiskResult {
   else level = 'low'
 
   const label = level === 'high' ? '高い' : level === 'normal' ? 'ふつう' : '低い'
-  const emoji = level === 'high' ? '🐻‼️' : level === 'normal' ? '🐻' : '🌿'
 
-  return { level, label, emoji, advice: adviceFor(level, hour), hour, month }
+  return { level, label, advice: adviceFor(level, hour), hour, month }
 }

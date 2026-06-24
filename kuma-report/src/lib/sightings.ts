@@ -56,4 +56,7 @@ export async function submitSighting(s: NewSighting, reporter?: string): Promise
   }
   list.push(record)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+
+  // デモ動作: 実際に送信しているような待ち時間を入れる
+  await new Promise((resolve) => setTimeout(resolve, 1200))
 }

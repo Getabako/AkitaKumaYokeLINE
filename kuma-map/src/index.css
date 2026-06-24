@@ -17,6 +17,10 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
     color: #1f2937;
+    /* 日本語が単語の途中で改行されないよう、文節（自然な区切り）で折り返す。
+       word-break / line-break は継承するので全テキストに効く。 */
+    word-break: auto-phrase;
+    line-break: strict;
   }
   h1 {
     font-size: 1.6rem;

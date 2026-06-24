@@ -7,9 +7,7 @@ export default function Locating() {
         aria-hidden
       />
       <p className="text-2xl font-bold text-slate-700">
-        いまいる場所を
-        <br />
-        さがしています…
+        場所をさがしています
       </p>
       <p className="text-base text-slate-500">
         少しお待ちください。

@@ -11,6 +11,8 @@
     font-size: 1.05rem;
     line-height: 1.9;
     letter-spacing: 0.04em;
+    word-break: auto-phrase;
+    line-break: strict;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: none;
     color: #1f2937;

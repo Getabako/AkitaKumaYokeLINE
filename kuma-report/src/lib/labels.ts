@@ -6,10 +6,11 @@ export const ANIMAL_LABEL: Record<Animal, string> = {
   deer: 'シカ',
 }
 
-export const ANIMAL_EMOJI: Record<Animal, string> = {
-  bear: '🐻',
-  boar: '🐗',
-  deer: '🦌',
+// 獣種ごとの色（絵文字の代わりに色付きの丸で見分ける）
+export const ANIMAL_COLOR: Record<Animal, string> = {
+  bear: '#b91c1c',
+  boar: '#92400e',
+  deer: '#15803d',
 }
 
 export const KIND_LABEL: Record<Kind, string> = {

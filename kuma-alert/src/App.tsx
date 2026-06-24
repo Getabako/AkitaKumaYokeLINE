@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { initLiff } from './lib/liff'
-import { AKITA_AREAS } from './lib/areas'
+import { AKITA_AREA_GROUPS } from './lib/areas'
 import {
   loadAlertPrefs,
   saveAlertPrefs,
@@ -78,42 +78,60 @@ export default function App() {
       <main className="px-4 py-6 space-y-6">
         <section className="card">
           <h2 className="text-xl font-bold leading-relaxed">
-            クマが出たら知らせてほしい場所をえらんでください
+            クマを知らせてほしい市町村をえらぶ
           </h2>
           <p className="mt-3 text-slate-600">
-            えらんだ市町村でクマが出たとき、LINEでお知らせします。いくつでもえらべます。
+            えらんだ市町村にクマが出たら、LINEでお知らせします。
           </p>
         </section>
 
-        <section>
-          <p className="mb-3 px-1 font-bold text-slate-700">市町村をえらぶ</p>
-          <div className="space-y-3">
-            {AKITA_AREAS.map((name) => {
-              const on = areas.includes(name)
-              return (
+        <section className="card">
+          <p className="font-bold text-slate-700">選んでいる市町村</p>
+          {areas.length === 0 ? (
+            <p className="mt-3 text-slate-500">まだ選ばれていません。</p>
+          ) : (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {areas.map((name) => (
                 <button
                   key={name}
                   type="button"
                   onClick={() => toggleArea(name)}
-                  aria-pressed={on}
-                  className={`area-item ${on ? 'area-item-on' : 'area-item-off'}`}
+                  className="area-chip"
+                  aria-label={`${name}を外す`}
                 >
-                  <span className="font-bold">{name}</span>
-                  <span
-                    className={`ml-3 flex h-9 w-9 flex-none items-center justify-center rounded-full border-2 text-xl font-bold ${
-                      on
-                        ? 'border-line-green bg-line-green text-white'
-                        : 'border-slate-300 text-transparent'
-                    }`}
-                    aria-hidden="true"
-                  >
-                    ✓
+                  <span>{name}</span>
+                  <span className="area-chip-x" aria-hidden="true">
+                    ×
                   </span>
                 </button>
-              )
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
+
+        {AKITA_AREA_GROUPS.map((group) => (
+          <section key={group.region}>
+            <p className="mb-3 px-1 text-lg font-bold text-slate-700">
+              {group.region}
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              {group.areas.map((name) => {
+                const on = areas.includes(name)
+                return (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => toggleArea(name)}
+                    aria-pressed={on}
+                    className={`area-cell ${on ? 'area-cell-on' : 'area-cell-off'}`}
+                  >
+                    {name}
+                  </button>
+                )
+              })}
+            </div>
+          </section>
+        ))}
 
         <section className="card">
           <p className="mb-4 font-bold text-slate-700">どこまで知らせますか？</p>
@@ -122,13 +140,13 @@ export default function App() {
               checked={severity === 'critical'}
               onSelect={() => setSeverity('critical')}
               title="人身被害・警報だけ"
-              desc="けが人が出たときや、市町村からの警報のときだけ知らせます。"
+              desc="けが人や警報のときだけ知らせます。"
             />
             <SeverityOption
               checked={severity === 'all'}
               onSelect={() => setSeverity('all')}
               title="目撃も全部"
-              desc="クマを見かけたという情報も、ぜんぶ知らせます。"
+              desc="目撃された情報もすべて知らせます。"
             />
           </div>
         </section>
@@ -208,13 +226,8 @@ function DoneScreen(props: { areas: string[]; onEdit: () => void }) {
       </header>
       <main className="px-4 py-8 space-y-6">
         <section className="card text-center">
-          <div className="mb-4 text-5xl" aria-hidden="true">
-            🐻
-          </div>
           <p className="text-xl font-bold leading-relaxed text-slate-800">
-            {areaText}でクマが出たら
-            <br />
-            LINEでお知らせします。
+            {areaText}でクマが出たら、LINEでお知らせします。
           </p>
         </section>
 
