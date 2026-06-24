@@ -20,25 +20,32 @@ function Card({ item }: { item: InfoItem }) {
   return (
     <button
       onClick={() => select(item.id)}
-      className="info-card"
+      className="panel w-full overflow-hidden text-left transition active:translate-y-0.5"
       style={{
-        borderLeftColor: meta.color,
-        outline: selected ? `3px solid ${meta.color}` : 'none',
+        borderColor: selected ? meta.color : undefined,
+        boxShadow: selected
+          ? `0 0 0 3px ${meta.color}, 0 12px 26px rgba(94,64,35,0.12)`
+          : undefined,
       }}
     >
-      <div className="flex items-center gap-3 mb-2">
+      <span
+        className="absolute left-0 top-0 h-full w-2"
+        style={{ background: meta.color }}
+        aria-hidden
+      />
+      <div className="mb-2 flex items-center gap-3 pl-2">
         <span
           className="inline-flex items-center gap-2 rounded-full px-4 py-1 text-base font-bold text-white"
           style={{ background: meta.color }}
         >
-          <span className="w-3 h-3 rounded-full bg-white/90" aria-hidden />
+          <span className="h-3 w-3 rounded-full bg-white/90" aria-hidden />
           {meta.label}
         </span>
       </div>
-      <p className="text-xl font-bold text-slate-900 mb-1">{item.title}</p>
-      <p className="text-lg text-slate-700 mb-2">{item.place}</p>
-      <p className="text-lg text-slate-800 mb-3">{item.detail}</p>
-      <p className="text-base text-slate-500">{formatUpdated(item.updatedAt)}</p>
+      <p className="mb-1 pl-2 text-xl font-bold text-ink">{item.title}</p>
+      <p className="mb-2 pl-2 text-lg text-bear">{item.place}</p>
+      <p className="mb-3 pl-2 text-lg text-ink/90">{item.detail}</p>
+      <p className="pl-2 text-base text-bear-soft/80">{formatUpdated(item.updatedAt)}</p>
     </button>
   )
 }
@@ -51,7 +58,7 @@ export function InfoList() {
 
   if (visible.length === 0) {
     return (
-      <div className="card rounded-3xl bg-white shadow-md p-8 text-center text-lg text-slate-600">
+      <div className="panel text-center text-bear-soft">
         いまは、この種類の情報はありません。
       </div>
     )

@@ -7,12 +7,10 @@ type Props = {
 
 export default function Home({ onReport }: Props) {
   return (
-    <div className="flex flex-col gap-7">
-      <div className="text-center pt-2">
-        <p className="text-xl font-bold text-slate-700">
-          クマを見たら、すぐおしらせ
-        </p>
-        <p className="text-base text-slate-500 mt-2">
+    <div className="flex flex-col gap-6">
+      <div className="text-center pt-1">
+        <h2 className="emboss">クマを見たら、すぐおしらせ</h2>
+        <p className="mt-2 text-bear-soft">
           ボタンを押すだけ。場所は自動でつたわります。
         </p>
       </div>
@@ -23,8 +21,10 @@ export default function Home({ onReport }: Props) {
         クマを見た
       </button>
 
+      <div className="divider" />
+
       <div className="flex flex-col gap-3">
-        <p className="text-base font-bold text-slate-600">クマ以外を見たとき</p>
+        <h2 className="section-label">クマ以外を見たとき</h2>
         <button className="btn-outline flex items-center justify-center gap-3" onClick={() => onReport('boar')}>
           <span
             className="inline-block rounded-full"
@@ -43,7 +43,7 @@ export default function Home({ onReport }: Props) {
         </button>
       </div>
 
-      <p className="text-sm text-slate-400 text-center">
+      <p className="text-center text-sm text-bear-soft/80">
         LINEで本人確認ずみ。いたずら通報は入りにくいしくみです。
       </p>
     </div>

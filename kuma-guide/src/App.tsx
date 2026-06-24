@@ -15,7 +15,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen max-w-md mx-auto bg-kuma-cream">
+    <div className="screen">
       {screen === 'menu' && <Menu />}
       {screen === 'avoid' && <Avoid />}
       {screen === 'meet' && <Meet />}

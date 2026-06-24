@@ -99,7 +99,7 @@ export function InfoMap() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-64 rounded-3xl overflow-hidden shadow-md border border-slate-200"
+      className="h-64 w-full overflow-hidden rounded-3xl border-2 border-cream-deep shadow-[0_12px_26px_rgba(94,64,35,0.10),0_2px_0_#EFE6D3]"
       aria-label="交通・くらし情報の地図"
     />
   )

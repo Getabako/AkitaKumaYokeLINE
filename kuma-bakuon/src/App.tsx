@@ -83,18 +83,17 @@ export default function App() {
   }, [bellOn])
 
   return (
-    <div className="min-h-screen max-w-md mx-auto bg-white text-slate-800 flex flex-col">
-      {/* 上部：音量アップの案内 */}
-      <header className="bg-amber-100 text-amber-900 px-5 py-4 text-center font-bold">
-        スマホの音量を、いちばん大きくしてください
+    <div className="screen">
+      <header className="app-header">
+        <span className="brand-tag">クマ避けAKITA</span>
+        <h1 className="app-title mt-2">クマ撃退ブザー</h1>
+        <p className="app-sub">クマに会ったら、大音量で身を守る</p>
       </header>
 
-      <main className="flex-1 px-5 py-6 flex flex-col gap-7">
+      <main className="flex-1 px-5 py-6 flex flex-col gap-6">
         {/* メイン：極大の赤いブザーボタン */}
-        <section>
-          <p className="text-center text-xl font-bold mb-4">
-            クマに会ったら、このボタン
-          </p>
+        <section className="flex flex-col gap-3">
+          <h2 className="section-label">クマに会ったら、このボタン</h2>
           <button
             type="button"
             className={`btn-alarm ${alarmOn ? 'btn-alarm-on' : ''}`}
@@ -111,61 +110,57 @@ export default function App() {
               </span>
             ))}
           </button>
-          <p className="text-center text-base text-slate-500 mt-3">
+          <p className="text-center text-base text-bear-soft">
             指をはなすと止まります／一度タップでも鳴ります
           </p>
         </section>
 
+        <div className="divider" />
+
         {/* サブ：熊よけ鈴モード */}
-        <section>
-          <p className="text-center text-lg font-bold mb-3">
-            歩くときの予防（熊よけ鈴）
-          </p>
+        <section className="flex flex-col gap-3">
+          <h2 className="section-label">歩くときの予防（熊よけ鈴）</h2>
           <button
             type="button"
             onClick={() => void toggleBell()}
             aria-pressed={bellOn}
-            className={`btn-bell ${
-              bellOn
-                ? 'bg-line-green text-white border-line-green-dark'
-                : 'bg-white text-line-green border-line-green'
-            }`}
+            className={bellOn ? 'btn-primary' : 'btn-outline'}
           >
             {bellOn ? '鈴モード：オン（タップで止める）' : '鈴モードを始める'}
           </button>
-          <p className="text-center text-base text-slate-500 mt-3">
+          <p className="text-center text-base text-bear-soft">
             3秒ごとにチリンと鳴って、クマに人の気配を知らせます
           </p>
         </section>
 
-        {/* 遭遇時の行動ガイド（大きく） */}
-        <section className="card bg-red-50 border-2 border-red-200">
-          <h2 className="text-xl font-extrabold text-red-700 mb-4">
-            クマに会ったら
-          </h2>
-          <ul className="space-y-4 text-lg font-bold">
+        {/* 遭遇時の行動ガイド */}
+        <section className="panel panel-accent flex flex-col gap-4">
+          <h2 className="section-label">クマに会ったら</h2>
+          <ul className="space-y-3 text-lg font-bold text-ink">
             <li className="flex gap-3">
-              <span className="text-red-600">①</span>
+              <span className="font-extrabold text-danger">①</span>
               <span>さわがず、おちついて</span>
             </li>
             <li className="flex gap-3">
-              <span className="text-red-600">②</span>
+              <span className="font-extrabold text-danger">②</span>
               <span>走らず、せなかを見せず</span>
             </li>
             <li className="flex gap-3">
-              <span className="text-red-600">③</span>
+              <span className="font-extrabold text-danger">③</span>
               <span>クマを見ながら、ゆっくり離れる</span>
             </li>
           </ul>
+          <div className="divider my-1" />
+          <p className="text-center text-base font-bold text-bear-soft">
+            スマホの音量を、いちばん大きくしてください
+          </p>
+          <p className="text-center text-base text-bear-soft leading-relaxed">
+            大きな音です。近くに人がいないか確かめてから鳴らしてください。
+          </p>
         </section>
 
-        {/* 人への注意 */}
-        <section className="text-center text-base text-slate-600 leading-relaxed">
-          大きな音です。近くに人がいないか確かめてから鳴らしてください。
-        </section>
-
-        <footer className="text-center text-sm text-slate-400 pt-2 pb-6">
-          あきた見守り｜クマ撃退ブザー
+        <footer className="text-center text-sm text-bear-soft/70 pt-1 pb-6">
+          クマ避けAKITA｜クマ撃退ブザー
         </footer>
       </main>
     </div>

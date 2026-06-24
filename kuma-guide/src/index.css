@@ -3,51 +3,207 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-size: 17px;
-  }
-  html, body, #root {
-    height: 100%;
-  }
+  html { font-size: 17px; }
+  html, body, #root { height: 100%; }
   body {
-    -webkit-tap-highlight-color: transparent;
-    overscroll-behavior-y: none;
+    font-family: "Zen Kaku Gothic New", system-ui, sans-serif;
+    font-size: 1.06rem;
     line-height: 1.9;
     letter-spacing: 0.04em;
-    color: #3a2a1a;
+    color: #2A2320;
+    background:
+      radial-gradient(130% 70% at 50% -15%, #FFFDF7 0%, #FBF6EC 55%, #F1E6D0 100%) fixed;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    /* 日本語が単語の途中で改行されないようにする */
     word-break: auto-phrase;
     line-break: strict;
   }
-  p, li, button, label {
-    line-height: 1.9;
+  h1, h2, h3 {
+    font-family: "M PLUS Rounded 1c", system-ui, sans-serif;
     letter-spacing: 0.04em;
+    line-height: 1.5;
+    color: #2A2320;
   }
+  h1 { font-size: 1.7rem; font-weight: 800; }
+  h2 { font-size: 1.38rem; font-weight: 800; }
+  h3 { font-size: 1.18rem; font-weight: 700; }
 }
 
 @layer components {
-  /* 大きなメニューボタン（特大） */
+  /* 画面全体の縦コンテナ（スマホ幅で中央寄せ） */
+  .screen { @apply mx-auto flex min-h-screen max-w-md flex-col; }
+
+  /* グラデーションの見出しヘッダー（浮き出し文字・下を丸く） */
+  .app-header {
+    @apply relative px-5 py-5 text-white;
+    background: linear-gradient(135deg, #06C755 0%, #04a948 65%, #00913E 100%);
+    border-bottom-left-radius: 1.6rem;
+    border-bottom-right-radius: 1.6rem;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+  }
+  .app-header::after {
+    /* 下端のアクセントライン */
+    content: "";
+    position: absolute; left: 1.25rem; right: 1.25rem; bottom: 0.6rem; height: 4px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.0), rgba(255,255,255,0.55), rgba(255,255,255,0.0));
+  }
+  .app-title {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: 1.55rem;
+    letter-spacing: 0.06em;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 5px 12px rgba(0,0,0,0.20);
+  }
+  .app-sub { @apply mt-1 text-white/90; font-size: 0.95rem; letter-spacing: 0.04em; }
+  .brand-tag {
+    @apply inline-block rounded-full bg-white/20 px-3 py-0.5 text-white;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+  }
+
+  /* 立体感のあるパネル（カード） */
+  .panel, .card {
+    @apply relative rounded-3xl bg-white p-6;
+    border: 2px solid #EFE6D3;
+    box-shadow: 0 12px 26px rgba(94,64,35,0.10), 0 2px 0 #EFE6D3;
+  }
+  /* 上にアクセントバーが付くパネル（class="panel panel-accent"） */
+  .panel-accent::before {
+    content: "";
+    position: absolute; left: 1.5rem; right: 1.5rem; top: 0; height: 6px;
+    border-radius: 0 0 9999px 9999px;
+    background: linear-gradient(90deg, #06C755, #F2A900);
+  }
+
+  /* セクション見出し（左にアクセントバー＋丸ゴシック） */
+  .section-label {
+    @apply flex items-center gap-2.5 font-bold text-ink;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1.18rem;
+  }
+  .section-label::before {
+    content: "";
+    @apply inline-block h-6 w-1.5 rounded-full;
+    background: linear-gradient(180deg, #06C755, #04a948);
+  }
+
+  /* 区切り線（破線ドット） */
+  .divider {
+    @apply my-5 h-px w-full;
+    background: repeating-linear-gradient(90deg, #E4D8BF 0 9px, transparent 9px 17px);
+  }
+
+  /* 浮き出し（白フチ＋影） */
+  .emboss { text-shadow: 0 1px 0 #fff, 0 2px 0 rgba(0,0,0,0.06), 0 6px 14px rgba(0,0,0,0.10); }
+
+  /* 大きく押しやすいボタン（グラデ＋立体・押すと沈む） */
+  .btn-primary {
+    @apply w-full rounded-2xl px-6 font-bold text-white transition active:translate-y-0.5;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    min-height: 64px; font-size: 1.2rem; letter-spacing: 0.04em;
+    background: linear-gradient(135deg, #06C755, #04a948);
+    box-shadow: 0 9px 20px rgba(6,199,85,0.35), inset 0 1px 0 rgba(255,255,255,0.45);
+  }
+  .btn-outline {
+    @apply w-full rounded-2xl border-2 border-cream-deep bg-white px-6 font-bold text-ink transition active:bg-cream;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    min-height: 64px; font-size: 1.15rem; letter-spacing: 0.04em;
+  }
+
+  /* トグルチップ */
+  .chip {
+    @apply inline-flex items-center justify-center rounded-full border-2 px-5 font-bold transition;
+    min-height: 54px; font-size: 1.05rem; letter-spacing: 0.03em;
+  }
+  .chip-on { @apply border-line-green bg-line-green text-white shadow; }
+  .chip-off { @apply border-cream-deep bg-white text-bear-soft; }
+
+  /* 大きなメニューボタン（共通トーンに合わせて格上げ） */
   .menu-btn {
-    @apply w-full flex items-center gap-4 rounded-3xl bg-white border-4 border-kuma-brown py-7 px-6 text-left font-bold text-2xl text-kuma-brown-dark shadow-md active:bg-kuma-cream transition;
+    @apply relative w-full flex items-center gap-4 rounded-3xl bg-white py-7 px-6 text-left font-bold text-xl text-ink transition active:translate-y-0.5;
+    font-family: "M PLUS Rounded 1c", sans-serif;
     min-height: 96px;
+    border: 2px solid #EFE6D3;
+    box-shadow: 0 12px 26px rgba(94,64,35,0.10), 0 2px 0 #EFE6D3;
   }
-  /* 「もどる」など主要ボタン */
-  .big-btn {
-    @apply w-full rounded-3xl bg-kuma-brown py-5 px-6 text-white font-bold text-xl shadow-md active:bg-kuma-brown-dark transition;
-    min-height: 64px;
-  }
-  .big-btn-outline {
-    @apply w-full rounded-3xl bg-white border-4 border-kuma-brown py-5 px-6 text-kuma-brown-dark font-bold text-xl shadow-sm active:bg-kuma-cream transition;
-    min-height: 64px;
-  }
-  /* 1項目ごとの大きなカード */
-  .guide-card {
-    @apply rounded-3xl bg-white shadow-md p-6 border-2 border-kuma-cream;
-  }
-  /* 番号バッジ（絵文字の代わり） */
+
+  /* 番号バッジ（絵文字の代わり・共通トーン） */
   .num-badge {
-    @apply shrink-0 flex items-center justify-center rounded-full bg-kuma-brown text-white font-bold;
+    @apply shrink-0 flex items-center justify-center rounded-full text-white font-bold;
     width: 3rem;
     height: 3rem;
     font-size: 1.5rem;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    background: linear-gradient(135deg, #06C755, #04a948);
+    box-shadow: 0 5px 12px rgba(6,199,85,0.30), inset 0 1px 0 rgba(255,255,255,0.45);
   }
+
+  /* ===== スライドカルーセル ===== */
+  /* 外側の見える窓 */
+  .carousel-viewport {
+    @apply relative w-full overflow-hidden;
+    touch-action: pan-y;
+  }
+  /* 内側のトラック（横並び・translateXで動く） */
+  .carousel-track {
+    @apply flex;
+    transition: transform .42s cubic-bezier(.22,.61,.36,1);
+  }
+  /* ドラッグ中はアニメを切ってカクつかせない */
+  .carousel-track.is-dragging {
+    transition: none;
+  }
+  /* 1枚分のスライド枠（窓いっぱい） */
+  .carousel-slide {
+    @apply shrink-0 grow-0 px-1;
+    flex-basis: 100%;
+  }
+  /* 縦長のスライドカード本体 */
+  .slide-card {
+    @apply relative mx-auto flex min-h-[460px] max-w-md flex-col overflow-hidden rounded-[2rem] p-7;
+    border: 2px solid rgba(255,255,255,0.6);
+    box-shadow: 0 18px 40px rgba(94,64,35,0.18), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  /* スライド上部の大きな番号バッジ */
+  .slide-badge {
+    @apply flex items-center justify-center rounded-full font-bold text-white;
+    width: 5rem; height: 5rem; font-size: 2.6rem;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.18), inset 0 2px 0 rgba(255,255,255,0.5);
+  }
+  /* スライド見出し */
+  .slide-title {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+  }
+  /* スライド本文 */
+  .slide-body {
+    font-size: 1.18rem;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+  }
+  /* ドットインジケータ */
+  .dot {
+    @apply h-2.5 rounded-full transition-all;
+    width: 0.625rem;
+    background: #D9C9A8;
+  }
+  .dot-on {
+    width: 1.7rem;
+    background: linear-gradient(90deg, #06C755, #04a948);
+  }
+  /* 角丸のナビボタン（前へ／次へ） */
+  .nav-btn {
+    @apply flex items-center justify-center rounded-2xl px-5 font-bold text-ink transition active:translate-y-0.5;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    min-height: 58px; font-size: 1.1rem; letter-spacing: 0.03em;
+    border: 2px solid #EFE6D3;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(94,64,35,0.10);
+  }
+  .nav-btn:disabled { @apply opacity-40; }
 }

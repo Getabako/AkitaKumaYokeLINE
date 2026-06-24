@@ -34,32 +34,45 @@ export function InfoView() {
   }, [setItems, setLoading, setError])
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-line-green text-white px-5 py-5 shadow-md">
-        <p className="text-base opacity-90">あきた見守り</p>
-        <h1 className="text-2xl font-bold mt-1">いまの交通・くらし情報</h1>
+    <div className="screen">
+      <header className="app-header">
+        <span className="brand-tag">クマ避けAKITA</span>
+        <h1 className="app-title emboss mt-2">いまの交通・くらし情報</h1>
+        <p className="app-sub">秋田の今を、いつものLINEで</p>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 flex flex-col gap-6">
-        <InfoMap />
+      <main className="flex flex-col gap-6 px-4 py-6">
+        <section className="flex flex-col gap-3">
+          <h2 className="section-label">地図でみる</h2>
+          <InfoMap />
+        </section>
 
-        <FilterBar />
+        <div className="divider" />
 
-        {loading && (
-          <div className="card rounded-3xl bg-white shadow-md p-8 text-center text-lg text-slate-600">
-            情報を読みこんでいます…
-          </div>
-        )}
+        <section className="flex flex-col gap-3">
+          <h2 className="section-label">種類でしぼる</h2>
+          <FilterBar />
+        </section>
 
-        {error && (
-          <div className="rounded-3xl bg-red-50 border-2 border-red-200 p-6 text-center text-lg text-red-700">
-            {error}
-          </div>
-        )}
+        <div className="divider" />
 
-        {!loading && !error && <InfoList />}
+        <section className="flex flex-col gap-4">
+          <h2 className="section-label">いまの情報</h2>
 
-        <p className="text-base text-slate-400 text-center pt-2 pb-8">
+          {loading && (
+            <div className="panel text-center text-bear-soft">情報を読みこんでいます…</div>
+          )}
+
+          {error && (
+            <div className="panel border-danger/40 text-center font-bold text-danger">
+              {error}
+            </div>
+          )}
+
+          {!loading && !error && <InfoList />}
+        </section>
+
+        <p className="pb-8 pt-2 text-center text-sm text-bear-soft/70">
           ※ 表示中の情報はサンプルです。最新の状況は各自治体・交通事業者の発表をご確認ください。
         </p>
       </main>

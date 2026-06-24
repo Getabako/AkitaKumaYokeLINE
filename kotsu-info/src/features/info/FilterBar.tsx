@@ -21,7 +21,7 @@ export function FilterBar() {
   const setFilter = useInfo((s) => s.setFilter)
 
   return (
-    <div className="grid grid-cols-3 gap-3" role="group" aria-label="種類でしぼりこむ">
+    <div className="flex flex-wrap gap-2.5" role="group" aria-label="種類でしぼりこむ">
       {ORDER.map((f) => {
         const active = filter === f
         return (
@@ -29,15 +29,10 @@ export function FilterBar() {
             key={f}
             onClick={() => setFilter(f)}
             aria-pressed={active}
-            className={[
-              'toggle-chip flex flex-col items-center gap-2',
-              active
-                ? 'bg-line-green text-white border-line-green shadow-md'
-                : 'bg-white text-slate-700 border-slate-300',
-            ].join(' ')}
+            className={['chip gap-2', active ? 'chip-on' : 'chip-off'].join(' ')}
           >
             <span
-              className="w-7 h-7 rounded-md border-2 border-white/70"
+              className="h-4 w-4 rounded-full border-2 border-white/80"
               style={{ background: colorOf(f) }}
               aria-hidden
             />

@@ -87,15 +87,14 @@ export default function App() {
   }, [step])
 
   return (
-    <div className="min-h-full bg-slate-50">
-      <header className="bg-kuma-red text-white px-5 py-4 shadow-md">
-        <h1 className="text-xl font-extrabold tracking-wide">
-          クマ目撃をしらせる
-        </h1>
-        <p className="text-sm opacity-90">あきた見守り</p>
+    <div className="screen">
+      <header className="app-header">
+        <span className="brand-tag">クマ避けAKITA</span>
+        <h1 className="app-title mt-2">クマ目撃をしらせる</h1>
+        <p className="app-sub">秋田の安心を、いつものLINEで</p>
       </header>
 
-      <main className="mx-auto max-w-md px-5 py-6">
+      <main className="flex-1 px-5 py-6">
         {step === 'home' && <Home onReport={locate} />}
         {step === 'locating' && <Locating />}
         {step === 'confirm' && lat != null && lng != null && (

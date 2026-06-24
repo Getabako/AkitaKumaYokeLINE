@@ -54,7 +54,7 @@ export default function MapPreview({ lat, lng }: Props) {
   return (
     <div
       ref={containerRef}
-      className="w-full rounded-2xl overflow-hidden border-2 border-slate-300"
+      className="w-full rounded-2xl overflow-hidden border-2 border-cream-deep"
       style={{ height: '220px' }}
     />
   )

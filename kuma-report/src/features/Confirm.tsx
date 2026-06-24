@@ -32,13 +32,15 @@ export default function Confirm({
 }: Props) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <p className="text-lg font-bold text-slate-700">いまいる場所</p>
+      <div className="flex flex-col gap-3">
+        <h2 className="section-label">いまいる場所</h2>
         <MapPreview lat={lat} lng={lng} />
       </div>
 
+      <div className="divider" />
+
       <div className="flex flex-col gap-3">
-        <p className="text-lg font-bold text-slate-700">何を見ましたか？</p>
+        <h2 className="section-label">何を見ましたか？</h2>
         <div className="grid grid-cols-3 gap-3">
           {ANIMALS.map((a) => (
             <button
@@ -57,8 +59,10 @@ export default function Confirm({
         </div>
       </div>
 
+      <div className="divider" />
+
       <div className="flex flex-col gap-3">
-        <p className="text-lg font-bold text-slate-700">どんなようすですか？</p>
+        <h2 className="section-label">どんなようすですか？</h2>
         <div className="flex flex-col gap-3">
           {KINDS.map((k) => (
             <button
@@ -72,8 +76,10 @@ export default function Confirm({
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="note" className="text-lg font-bold text-slate-700">
+      <div className="divider" />
+
+      <div className="flex flex-col gap-3">
+        <label htmlFor="note" className="section-label">
           ひとこと（任意）
         </label>
         <textarea
@@ -85,7 +91,7 @@ export default function Confirm({
         />
       </div>
 
-      <button className="btn-hero" style={{ minHeight: '90px', fontSize: '1.4rem' }} onClick={onSubmit} disabled={submitting}>
+      <button className="btn-primary" style={{ minHeight: '76px', fontSize: '1.35rem' }} onClick={onSubmit} disabled={submitting}>
         {submitting ? '送信しています…' : 'この内容でしらせる'}
       </button>
 
@@ -93,7 +99,7 @@ export default function Confirm({
         やめて最初にもどる
       </button>
 
-      <p className="text-sm text-slate-400 text-center">
+      <p className="text-center text-sm text-bear-soft/80">
         LINEで本人確認ずみ。いたずら通報は入りにくいしくみです。
       </p>
     </div>

@@ -60,32 +60,33 @@ export default function App() {
   }, [setLoading, setSightings, fail])
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-md flex-col bg-slate-50">
-      <header className="bg-line-green px-5 py-5 text-white shadow-md">
-        <h1 className="text-white">クマ出没マップ</h1>
-        <p className="mt-1 text-base text-white/90">あきた見守り・無料</p>
+    <div className="screen">
+      <header className="app-header">
+        <span className="brand-tag">クマ避けAKITA</span>
+        <h1 className="app-title mt-2">クマ出没マップ</h1>
+        <p className="app-sub">秋田の安心を、いつものLINEで</p>
       </header>
 
-      <main className="flex-1 space-y-5 p-5">
-        <section>
-          <h2 className="mb-3">いまの出没状況</h2>
+      <main className="flex-1 space-y-6 p-5">
+        <section className="panel panel-accent space-y-4">
+          <h2 className="section-label">いまの出没状況</h2>
 
           {status === 'error' && (
-            <div className="card border-2 border-red-300 text-red-700">
+            <div className="rounded-2xl border-2 border-danger/40 bg-danger/5 px-4 py-3 font-bold text-danger">
               {error}
             </div>
           )}
 
           {status === 'ready' && (
-            <p className="mb-3 text-slate-700">
+            <p className="text-ink">
               いま地図に出ているのは <span className="font-bold text-line-green">{visible.length}件</span> です。
             </p>
           )}
 
-          <div className="overflow-hidden rounded-2xl border-2 border-slate-200 shadow-md">
+          <div className="overflow-hidden rounded-2xl border-2 border-cream-deep shadow-inner">
             <div className="h-[420px] w-full">
               {status === 'loading' ? (
-                <div className="flex h-full items-center justify-center bg-white text-slate-500">
+                <div className="flex h-full items-center justify-center bg-white text-bear-soft">
                   地図を読み込んでいます…
                 </div>
               ) : (
@@ -94,27 +95,29 @@ export default function App() {
             </div>
           </div>
 
+          <div className="divider" />
+
           <a
             href={kumadasUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary mt-4 flex items-center justify-center text-center"
+            className="btn-primary flex items-center justify-center text-center"
           >
             県の最新情報を見る（クマダス）
           </a>
-          <p className="mt-2 text-base text-slate-500">
+          <p className="text-base text-bear-soft">
             正式に県と連携すると、最新の出没情報がこの画面にそのまま表示されます。
           </p>
         </section>
 
-        <section className="card">
-          <h2 className="mb-4">しぼりこみ</h2>
+        <section className="panel space-y-4">
+          <h2 className="section-label">しぼりこみ</h2>
           <Filters />
         </section>
 
         <Legend />
 
-        <p className="px-1 pb-2 text-base text-slate-500">
+        <p className="px-1 pb-2 text-base text-bear-soft">
           ※ 情報はうそ情報チェック後に掲載しています。危険を感じたらすぐに安全な場所へ。
         </p>
       </main>
